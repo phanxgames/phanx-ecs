@@ -1,0 +1,13 @@
+{
+  "name": "phanx-ecs",
+  "version": "0.0.1",
+  "main":"index.js",
+  "dependencies": {
+    "dictionaryjs": "^1.0.7"
+  },
+  "typings": "index.d.ts",
+  "author": "thephantom <phanxgames@gmail.com> (http://www.phanxgames.com)",
+  "license": "MIT",
+  "description": "Simple lightweight ECS system for TypeScript.",
+  "keywords":["entity","component","ecs"],
+}

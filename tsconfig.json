@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2016",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "types": ["node"],
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
