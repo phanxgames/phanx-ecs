@@ -9,5 +9,5 @@
   "author": "thephantom <phanxgames@gmail.com> (http://www.phanxgames.com)",
   "license": "MIT",
   "description": "Simple lightweight ECS system for TypeScript.",
-  "keywords":["entity","component","ecs"],
+  "keywords":["entity","component","ecs"]
 }
