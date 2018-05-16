@@ -5,9 +5,9 @@ export class Sleeping implements IComponent {
     public componentName: string = "Sleeping";
 
     //references
-    public parent:Person;
+    public parent: Person;
 
-    constructor(parent:Person) {
+    constructor(parent: Person) {
         this.parent = parent;
     }
 

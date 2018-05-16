@@ -5,17 +5,17 @@ export class Position implements IComponent {
     public componentName: string = "Position";
 
     //references
-    public parent:Person;
+    public parent: Person;
 
     //properties
-    public x:number = 0;
-    public y:number = 0;
+    public x: number = 0;
+    public y: number = 0;
 
-    constructor(parent:Person) {
+    constructor(parent: Person) {
         this.parent = parent;
     }
 
-    public toString():string {
+    public toString(): string {
         return "x:" + this.x + ", y:" + this.y;
     }
 

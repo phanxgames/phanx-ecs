@@ -1,16 +1,16 @@
 import {BaseEntity} from "../BaseEntity";
 import {Position} from "./components/Position";
-import {Sleeping} from ".//components/Sleeping";
+import {Sleeping} from "./components/Sleeping";
 
 export class Person extends BaseEntity {
 
     //components
-    public position:Position;
+    public position: Position;
 
     //properties
-    public name:string;
+    public name: string;
 
-    constructor(name:string, x:number=0, y:number=0) {
+    constructor(name: string, x: number = 0, y: number = 0) {
         super();
 
         this.name = name;
@@ -27,26 +27,28 @@ export class Person extends BaseEntity {
         this.position = this.addComponent(new Position(this)) as Position;
     }
 
-    public move(x:number,y:number):void {
+    public move(x: number, y: number): void {
 
+        //check if hero is asleep
         if (this.hasComponent("Sleeping"))
-            console.log(this + " cannot move while asleep to x:", x , ", y:" , y);
+            console.log(this + " cannot move while asleep to x:", x, ", y:", y);
         else {
             this.position.x = x;
             this.position.y = y;
-            console.log(this + " moved to x:" , x, ", y:", y);
+            console.log(this + " moved to " + this.position);
         }
     }
 
-    public sleep():void {
+    public fallAsleep(): void {
         this.addComponent(new Sleeping(this));
     }
-    public wakeUp():void {
+
+    public wakeUp(): void {
         this.removeComponent("Sleeping");
     }
 
 
-    public toString():string {
+    public toString(): string {
         return this.name;
     }
 }
