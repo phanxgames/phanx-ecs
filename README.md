@@ -1,6 +1,8 @@
 
 # Phanx ECS
 
+A simple implementation of a Entity Component System written in TypeScript.
+
 ### Install
 
 ```
@@ -9,7 +11,7 @@ npm install phanx-ecs
 
 ## Setting up your Entities
 
-You may either use this library by extending the **BaseEntity** class or by implement **IEntity** directly.
+You may either use this library by extending the **BaseEntity** class or by implementing **IEntity** directly.
 
 ### 1) Extend BaseEntity
 
@@ -85,6 +87,10 @@ Example:
 ...
 ```
 
+## Example
+
+See the example directory for a basic example of an Entity and two Components.
+
 # API
 
 ## IEntity
@@ -92,6 +98,7 @@ Example:
 **components**:*Dictionary<ComponentName, IComponent>*
 
 > ***Property***.
+>
 > The Dictionary that stores all components of this entity.  Stored by ComponentName:*string* as the key.
 
 **addComponent**(*component:IComponent*):*IComponent*
@@ -176,3 +183,7 @@ Example:
 *Optional* - **dispose**():*void*
 
 > Called when from the entity automatically from the entity.**disposeComponents()** method.
+
+## Dependencies
+
+- [dictionaryjs](https://github.com/phanxgames/dictionaryjs)

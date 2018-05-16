@@ -7,7 +7,7 @@ export class UtilECS {
     static addComponent(collection: Dictionary<ComponentName, IComponent>,
                         component: IComponent): IComponent {
         collection.set(component.componentName, component);
-        if (component != null && component.hasOwnProperty("onAdded"))
+        if (component != null && component.onAdded!=null)
             component.onAdded();
         return component;
     }
@@ -17,7 +17,7 @@ export class UtilECS {
         let name: ComponentName = UtilECS.getComponentName(component);
         if (collection.has(name)) {
             let comp: IComponent = collection.get(name);
-            if (comp != null && comp.hasOwnProperty("onRemoved"))
+            if (comp != null && comp.onRemoved!=null)
                 comp.onRemoved();
             collection.remove(name);
             return true;
@@ -43,7 +43,7 @@ export class UtilECS {
             return;
 
         for (let comp of collection) {
-            if (comp != null && comp.hasOwnProperty("update"))
+            if (comp != null && comp.update!=null)
                 comp.update();
         }
     }
@@ -55,10 +55,10 @@ export class UtilECS {
         for (let comp of collection) {
             if (comp != null) {
 
-                if (comp.hasOwnProperty("onRemoved"))
+                if (comp.onRemoved!=null)
                     comp.onRemoved();
 
-                if (comp.hasOwnProperty("dispose"))
+                if (comp.dispose!=null)
                     comp.dispose();
 
             }
