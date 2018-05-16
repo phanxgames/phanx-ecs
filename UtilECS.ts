@@ -4,22 +4,20 @@ import {ComponentName} from "./IEntity";
 
 export class UtilECS {
 
-    static addComponent(collection:Dictionary<ComponentName,IComponent>,
-                        component: IComponent): IComponent
-    {
+    static addComponent(collection: Dictionary<ComponentName, IComponent>,
+                        component: IComponent): IComponent {
         collection.set(component.componentName, component);
-        if (component!=null && component.hasOwnProperty("onAdded"))
+        if (component != null && component.hasOwnProperty("onAdded"))
             component.onAdded();
         return component;
     }
 
-    static removeComponent(collection:Dictionary<ComponentName,IComponent>,
-                           component: IComponent | ComponentName): boolean
-    {
-        let name:ComponentName = UtilECS.getComponentName(component);
+    static removeComponent(collection: Dictionary<ComponentName, IComponent>,
+                           component: IComponent | ComponentName): boolean {
+        let name: ComponentName = UtilECS.getComponentName(component);
         if (collection.has(name)) {
-            let comp:IComponent = collection.get(name);
-            if (comp!=null && comp.hasOwnProperty("onRemoved"))
+            let comp: IComponent = collection.get(name);
+            if (comp != null && comp.hasOwnProperty("onRemoved"))
                 comp.onRemoved();
             collection.remove(name);
             return true;
@@ -27,42 +25,35 @@ export class UtilECS {
         return false;
     }
 
-    static hasComponent(collection:Dictionary<ComponentName,IComponent>,
-                        component: IComponent | ComponentName):boolean
-    {
-        let name:ComponentName = UtilECS.getComponentName(component);
+    static hasComponent(collection: Dictionary<ComponentName, IComponent>,
+                        component: IComponent | ComponentName): boolean {
+        let name: ComponentName = UtilECS.getComponentName(component);
         return collection.has(name) ||
             collection.contains(component as IComponent);
     }
 
-    static getComponent(collection:Dictionary<ComponentName,IComponent>,
-                        name: ComponentName, defaultValue:any=null)
-    : IComponent | null
-    {
+    static getComponent(collection: Dictionary<ComponentName, IComponent>,
+                        name: ComponentName, defaultValue: any = null): IComponent | null {
         return collection.getDefault(name, defaultValue);
     }
 
 
-    static updateComponents(collection:Dictionary<ComponentName,IComponent>)
-    :void
-    {
-        if (collection==null)
+    static updateComponents(collection: Dictionary<ComponentName, IComponent>): void {
+        if (collection == null)
             return;
 
         for (let comp of collection) {
-            if (comp!=null && comp.hasOwnProperty("update"))
+            if (comp != null && comp.hasOwnProperty("update"))
                 comp.update();
         }
     }
 
-    static disposeComponents(collection:Dictionary<ComponentName,IComponent>)
-    :void
-    {
-        if (collection==null)
+    static disposeComponents(collection: Dictionary<ComponentName, IComponent>): void {
+        if (collection == null)
             return;
 
         for (let comp of collection) {
-            if (comp!=null) {
+            if (comp != null) {
 
                 if (comp.hasOwnProperty("onRemoved"))
                     comp.onRemoved();
@@ -77,9 +68,7 @@ export class UtilECS {
     }
 
 
-    private static getComponentName(component: IComponent | ComponentName)
-    :ComponentName
-    {
+    private static getComponentName(component: IComponent | ComponentName): ComponentName {
         if (UtilECS.isComponent(component))
             return (component as IComponent).componentName;
         else
@@ -87,7 +76,7 @@ export class UtilECS {
     }
 
 
-    private static isComponent(component: IComponent | ComponentName):boolean {
+    private static isComponent(component: IComponent | ComponentName): boolean {
         return !(typeof component === "string");
     }
 

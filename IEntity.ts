@@ -10,14 +10,14 @@ export interface IEntity {
      * @param {IComponent} component
      * @returns {IComponent} Returns component that was added. (For chaining)
      */
-    addComponent(component:IComponent):IComponent;
+    addComponent(component: IComponent): IComponent;
 
     /**
      * Removes component by reference or name.
      * @param {IComponent|ComponentName} component
      * @returns {boolean} Returns component that was removed.
      */
-    removeComponent(component:IComponent|ComponentName):boolean;
+    removeComponent(component: IComponent | ComponentName): boolean;
 
 
     /**
@@ -25,7 +25,7 @@ export interface IEntity {
      * @param {IComponent|ComponentName} component
      * @returns {boolean} Returns true or false.
      */
-    hasComponent(component:IComponent|ComponentName):boolean;
+    hasComponent(component: IComponent | ComponentName): boolean;
 
 
     /**
@@ -34,25 +34,26 @@ export interface IEntity {
      * @param defaultValue (optional)
      * @returns {IComponent|null}
      */
-    getComponent(name:ComponentName, defaultValue?:any):IComponent|null;
+    getComponent(name: ComponentName, defaultValue?: any): IComponent | null;
 
     /**
      * Returns the Dictionary of components.
      * @returns {Dictionary<ComponentName, IComponent>}
      */
-    getComponents():Dictionary<ComponentName,IComponent>;
-    components:Dictionary<ComponentName,IComponent>;
+    getComponents(): Dictionary<ComponentName, IComponent>;
+
+    components: Dictionary<ComponentName, IComponent>;
 
     /**
      * @optional
      * Call on tick to update this entity and all children.
      */
-    updateComponents?():void;
+    updateComponents?(): void;
 
     /**
      * @optional
      * Call to dispose this entity and children.
      */
-    disposeComponents?():void;
+    disposeComponents?(): void;
 
 }

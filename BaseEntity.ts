@@ -5,7 +5,7 @@ import {UtilECS} from "./UtilECS";
 
 export class BaseEntity implements IEntity {
 
-    public components:Dictionary<ComponentName,IComponent> =
+    public components: Dictionary<ComponentName, IComponent> =
         new Dictionary<ComponentName, IComponent>();
 
     /**
@@ -41,7 +41,7 @@ export class BaseEntity implements IEntity {
      * @param defaultValue (optional)
      * @returns {IComponent|null}
      */
-    getComponent(name: ComponentName, defaultValue:any=null): IComponent | null {
+    getComponent(name: ComponentName, defaultValue: any = null): IComponent | null {
         return UtilECS.getComponent(this.components, name, defaultValue);
     }
 
@@ -56,7 +56,7 @@ export class BaseEntity implements IEntity {
     /**
      * Call on tick to update this entity and all children.
      */
-    updateComponents():void {
+    updateComponents(): void {
 
         UtilECS.updateComponents(this.components);
 
@@ -65,7 +65,7 @@ export class BaseEntity implements IEntity {
     /**
      * Call to dispose this entity and children.
      */
-    disposeComponents():void {
+    disposeComponents(): void {
 
         UtilECS.disposeComponents(this.components);
 
