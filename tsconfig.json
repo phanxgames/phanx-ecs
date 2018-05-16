@@ -4,7 +4,7 @@
     "target": "es2016",
     "experimentalDecorators": true,
     "sourceMap": true,
-    "declaration": true
+    "types": ["node"]
   },
   "exclude": [
     "node_modules"
