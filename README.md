@@ -101,6 +101,54 @@ See the example directory for a basic example of an Entity and two Components.
 >
 > The Dictionary that stores all components of this entity.  Stored by ComponentName:*string* as the key.
 
+**entityChildren**:*Set<IEntity\>*
+
+ > ***Property***.
+ >
+ > The Set that stores all entity children of this entity. 
+
+
+
+**addEntityChild**(*entity:IEntity*):*IEntity*
+
+> Adds a child entity to this entity.
+>
+> **Returns:** IEntity inserted, useful for chaining.
+>
+> **Parameters:**
+> * entity:*IEntity*
+
+
+**removeEntityChild**(*entity:IEntity*):*boolean*
+
+> Removes a child entity from this entity.
+>
+> **Returns:** Boolean - if the entity was removed.
+>
+> **Parameters:**
+> * entity:*IEntity*
+
+
+**hasEntityChild**(*entity:IEntity*):*boolean*
+
+> Check whether this entity has the child entity.
+>
+> **Returns:** Boolean - if the child entity was found.
+>
+> **Parameters:**
+> * entity:*IEntity* 
+
+**getEntityChildren**():*Array<IEntity>*
+
+> Returns all child entities on this entity.
+>
+> **Returns:** the array of entities
+>
+> **Parameters:**
+> * None
+>
+
+
 **addComponent**(*component:IComponent*):*IComponent*
 
 > Adds a component to the entity.
@@ -148,17 +196,17 @@ See the example directory for a basic example of an Entity and two Components.
 > **Parameters:**
 > * None
 
-*Optional* - **updateComponents**():*void*
+*Optional* - **update**(t:number):*void*
 
 > *Included on **BaseEntity**.*
 >
-> Call when you wish to update all components.  Calls comp.**update()** method on each component.
+> Call when you wish to update all components.  Calls comp.**update(t)** method on each component. Calls entity.**update(t)** method on each child entity.
 
-*Optional* - **disposeComponents**():*void*
+*Optional* - **dispose**():*void*
 
 > *Included on **BaseEntity**.*
 >
-> Call when you wish to dispose all components.  Calls comp.**dispose()** method on each component.
+> Call when you wish to dispose all components.  Calls comp.**dispose()** method on each component. Calls entity.**dispose()** method on each child entity.
 
 ## IComponent
 
@@ -178,11 +226,11 @@ See the example directory for a basic example of an Entity and two Components.
 
 *Optional* - **update**():*void*
 
-> Called when from the entity automatically from the entity.**updateComponents()** method.
+> Called when from the entity automatically from the entity.**update(t)** method.
 
 *Optional* - **dispose**():*void*
 
-> Called when from the entity automatically from the entity.**disposeComponents()** method.
+> Called when from the entity automatically from the entity.**dispose()** method.
 
 ## Dependencies
 

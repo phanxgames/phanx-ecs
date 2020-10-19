@@ -25,7 +25,7 @@ export interface IComponent {
      * @optional
      * Called from entity on update tick.
      */
-    update?(): void;
+    update?(t:number): void;
 
     /**
      * @optional

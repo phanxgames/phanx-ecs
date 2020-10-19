@@ -5,8 +5,33 @@ import {UtilECS} from "./UtilECS";
 
 export class BaseEntity implements IEntity {
 
+
     public components: Dictionary<ComponentName, IComponent> =
         new Dictionary<ComponentName, IComponent>();
+
+    public entityChildren: Set<IEntity> = new Set<IEntity>();
+
+
+    addEntityChild(entity: IEntity): IEntity {
+        this.entityChildren.add(entity);
+        return entity;
+    }
+
+    removeEntityChild(entity: IEntity): boolean {
+        return this.entityChildren.delete(entity);
+    }
+
+    hasEntityChild(entity: IEntity): boolean {
+        return this.entityChildren.has(entity);
+    }
+
+    getEntityChildren(): Array<IEntity> {
+        //@ts-ignore
+        return this.entityChildren.values();
+    }
+
+
+
 
     /**
      * Add component.
@@ -53,23 +78,25 @@ export class BaseEntity implements IEntity {
         return this.components;
     }
 
+
+
+
     /**
      * Call on tick to update this entity and all children.
      */
-    updateComponents(): void {
+    update(t:number=0): void {
 
-        UtilECS.updateComponents(this.components);
+        UtilECS.updateComponents(this.components, t);
+        UtilECS.updateEntityChildren(this.entityChildren, t);
 
     }
 
     /**
      * Call to dispose this entity and children.
      */
-    disposeComponents(): void {
-
+    dispose() {
         UtilECS.disposeComponents(this.components);
-
+        UtilECS.disposeEntityChildren(this.entityChildren);
     }
-
 
 }

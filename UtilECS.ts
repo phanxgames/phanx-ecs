@@ -1,6 +1,6 @@
 import {IComponent} from "./IComponent";
 import {Dictionary} from "dictionaryjs";
-import {ComponentName} from "./IEntity";
+import {ComponentName, IEntity} from "./IEntity";
 
 export class UtilECS {
 
@@ -38,13 +38,13 @@ export class UtilECS {
     }
 
 
-    static updateComponents(collection: Dictionary<ComponentName, IComponent>): void {
+    static updateComponents(collection: Dictionary<ComponentName, IComponent>, t:number=0): void {
         if (collection == null)
             return;
 
         for (let comp of collection) {
             if (comp != null && comp.update!=null)
-                comp.update();
+                comp.update(t);
         }
     }
 
@@ -65,6 +65,33 @@ export class UtilECS {
         }
 
         collection.empty();
+    }
+
+
+    static updateEntityChildren(collection: Set<IEntity>, t:number=0): void {
+        if (collection == null)
+            return;
+
+        for (let entity of collection) {
+            if (entity != null && entity.update!=null)
+                entity.update(t);
+        }
+    }
+
+    static disposeEntityChildren(collection: Set<IEntity>):void {
+        if (collection == null)
+            return;
+
+        for (let entity of collection) {
+            if (entity != null) {
+
+                if (entity.dispose!=null)
+                    entity.dispose();
+
+            }
+        }
+
+        collection.clear();
     }
 
 

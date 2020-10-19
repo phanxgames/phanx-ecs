@@ -5,6 +5,26 @@ export type ComponentName = string;
 
 export interface IEntity {
 
+
+    components: Dictionary<ComponentName, IComponent>;
+
+
+    entityChildren: Set<IEntity>;
+
+
+
+    addEntityChild(entity:IEntity): IEntity;
+
+    removeEntityChild(entity:IEntity):boolean;
+
+    hasEntityChild(entity:IEntity):boolean;
+
+    getEntityChildren():Array<IEntity>;
+
+
+
+
+
     /**
      * Add component.
      * @param {IComponent} component
@@ -42,18 +62,17 @@ export interface IEntity {
      */
     getComponents(): Dictionary<ComponentName, IComponent>;
 
-    components: Dictionary<ComponentName, IComponent>;
 
     /**
      * @optional
      * Call on tick to update this entity and all children.
      */
-    updateComponents?(): void;
+    update?(t:number): void;
 
     /**
      * @optional
      * Call to dispose this entity and children.
      */
-    disposeComponents?(): void;
+    dispose?(): void;
 
 }
